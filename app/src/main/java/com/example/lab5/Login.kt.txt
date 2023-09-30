@@ -1,0 +1,110 @@
+package com.example.lab5
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.Divider
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TextField
+import androidx.compose.ui.text.font.FontWeight
+import com.example.lab5.ui.theme.Lab5Theme
+
+
+class Login: ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            Lab5Theme  {
+                // A surface container using the 'background' color from the theme
+                Surface(
+                    modifier = Modifier,
+                    color = MaterialTheme.colorScheme.background,
+                ) {
+                    LoginFun()
+                }
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun LoginFun(modifier: Modifier = Modifier) {
+    Surface(color = Color.White) {
+        Column(
+            modifier = modifier
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+
+            //Icono de arriba
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+
+            ){
+
+                Image(
+                    painter = painterResource(id = R.drawable.login_foreground),
+                    contentDescription = "Inicio de sesión",
+                    modifier = modifier
+                        .size(250.dp)
+                )
+
+                Text(text = "Inicio de sesión",
+                    fontWeight = FontWeight.ExtraBold,
+                    fontSize = 20.sp,
+                    modifier = Modifier
+                )
+
+                Text(text = "" )
+
+                //Inputs
+                var user: String = "";
+                var password: String = "";
+
+                TextField(
+                    value = user,
+                    onValueChange = { user = it },
+                    label = { Text("Usuario") }
+                )
+
+//Inputs
+                TextField(
+                    value = password,
+                    onValueChange = { password = it },
+                    label = { Text("Contraseña") }
+                )
+
+            }
+
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun LoginPreview() {
+    Lab5Theme {
+        ProfileFun()
+    }
+
+}
